@@ -23,11 +23,13 @@ public class Filbehandler {
 	private List<Color> c;
 	private List<Integer> v;
 	private StorageProviderDefinition storage;
+	private JFrame jframe;
 
-	public Filbehandler(String path, JFrame jf, StorageProviderDefinition storage){
+	public Filbehandler(String path, JFrame jf, StorageProviderDefinition storage, JFrame jframe){
 		this.storage = storage;
 		sketchname = path;
 		mainFrame = jf;
+		this.jframe = jframe;
 	};
 	
 	public void setPath(String s){
@@ -111,6 +113,6 @@ public class Filbehandler {
 		
 		boolean loaded = true;
 		String path = sketchName;
-		new HovedVindu(path, loaded, storage);
+		new HovedVindu(path, loaded, storage, jframe);
 	}
 }

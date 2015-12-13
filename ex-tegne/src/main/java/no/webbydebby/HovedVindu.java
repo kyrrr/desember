@@ -10,27 +10,29 @@ import javax.swing.JFrame;
 import no.webbydebby.storagetool.StorageProviderDefinition;
 
 
-public class HovedVindu extends JFrame{
+public class HovedVindu /*extends JFrame*/{
 	
 	private StorageProviderDefinition storage;
+	private JFrame jframe;
 
-	public HovedVindu(String sketchName, Boolean loaded, StorageProviderDefinition storage) {
+	public HovedVindu(String sketchName, Boolean loaded, StorageProviderDefinition storage, JFrame jframe) {
+		this.jframe=jframe;
 		this.storage = storage;
 		startUI(sketchName, loaded);
 	}
 
 	private void startUI(String sketchName, Boolean loaded) {
-		setTitle(sketchName);
-		setSize(800, 700);
-		setBackground(Color.black);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Tegneprogram draw = new Tegneprogram(sketchName, loaded, this, storage);
+		jframe.setTitle(sketchName);
+		jframe.setSize(800, 700);
+		jframe.setBackground(Color.black);
+		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Tegneprogram draw = new Tegneprogram(sketchName, loaded, jframe, storage, jframe);
 		Fargevelger fv = new Fargevelger();
-		add(draw, BorderLayout.CENTER);
-		add(fv,BorderLayout.WEST);
+		jframe.add(draw, BorderLayout.CENTER);
+		jframe.add(fv,BorderLayout.WEST);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-		setVisible(true);
+		jframe.setLocation(dim.width/2-jframe.getSize().width/2, dim.height/2-jframe.getSize().height/2);
+		jframe.setVisible(true);
 	}
 
 }

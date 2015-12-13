@@ -2,6 +2,8 @@ package no.webbydebby;
 
 import java.util.List;
 
+import javax.swing.JFrame;
+
 import no.webbydebby.chooser.ChooseFromListOrOtherDefinition;
 import no.webbydebby.chooser.SimpleConsoleInputChooserImpl;
 import no.webbydebby.storagetool.StorageProviderDefinition;
@@ -21,9 +23,9 @@ public class Entrypoint {
 				boolean isExistingSketch = filenames.contains(sketchName);
 				storage.setSketchname(sketchName);
 				System.out.println("Sketchname: " + sketchName + " Existing?: " + isExistingSketch);
-				
+				JFrame jframe = new JFrame();
 				boolean loaded = true;
-				new HovedVindu(sketchName, loaded, storage);
+				new HovedVindu(sketchName, loaded, storage, jframe);
 	}
 	
 }

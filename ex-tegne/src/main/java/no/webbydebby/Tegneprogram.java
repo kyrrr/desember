@@ -42,15 +42,17 @@ public class Tegneprogram extends MPanel
 	static Color farge = Color.BLACK;
 	boolean loaded;
 	private StorageProviderDefinition storage;
+	private JFrame jframe;
 
-	public Tegneprogram(String sketchName, Boolean loaded, JFrame jf, StorageProviderDefinition storage) {
+	public Tegneprogram(String sketchName, Boolean loaded, JFrame jf, StorageProviderDefinition storage, JFrame jframe) {
 		this.storage = storage;
+		this.jframe = jframe;
 		addMouseMotionListener(this);
 		addMouseListener(this);
 		this.loaded = loaded;
 		sw.start();
 		mainFrame = jf;
-		fb = new Filbehandler(sketchName, mainFrame, storage);
+		fb = new Filbehandler(sketchName, mainFrame, storage, jframe);
 
 		setLayout(new BorderLayout());
 		Panel pan = new Panel();
@@ -157,7 +159,6 @@ public class Tegneprogram extends MPanel
 				break;
 			}
 		}
-
 	}
 
 	public void update(Graphics g) {
