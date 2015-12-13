@@ -22,12 +22,12 @@ import org.apache.commons.lang3.time.StopWatch;
 
 import no.webbydebby.storagetool.StorageProviderDefinition;
 
-
-public class Tegneprogram extends MPanel implements MouseMotionListener, MouseListener, ActionListener, Serializable, Cloneable{
+public class Tegneprogram extends MPanel
+		implements MouseMotionListener, MouseListener, ActionListener, Serializable, Cloneable {
 
 	static List<Point> displayListe = new ArrayList<>();
 	static List<Color> fargeListe = new ArrayList<>();
-    static List<Integer> verktoyListe = new ArrayList<>();
+	static List<Integer> verktoyListe = new ArrayList<>();
 	JButton clearBtn = new JButton("Clear");
 	JButton loadBtn = new JButton("Load");
 	JButton quitBtn = new JButton("Quit");
@@ -63,37 +63,36 @@ public class Tegneprogram extends MPanel implements MouseMotionListener, MouseLi
 		add("North", pan);
 		setSize(350, 200);
 
-
-		Thread a = new Thread(() -> {    //Stoppeklokken kjer i sin egne, asynkrone tr蘚 s� den kan kje uavhengig
+		Thread a = new Thread(() -> { // Stoppeklokken kjer i sin egne,
+										// asynkrone tr蘚 s� den kan kje
+										// uavhengig
 			saveTimer(sw);
 		});
 
-		//Starter tr蘚en
+		// Starter tr蘚en
 		a.start();
-
 
 	}
 
-
-	//N蚌 musen dras legges punktene musen dras over inn i listen DisplayListe
+	// N蚌 musen dras legges punktene musen dras over inn i listen DisplayListe
 	public void mouseDragged(MouseEvent me) {
 		changed = true;
 		start = slutt;
 		slutt = new Point(me.getX(), me.getY());
-		//Punkt m� alltid legges inn i par, om start er null legges det inn to like sluttpunkter
-		if(start!= null && displayListe != null){
+		// Punkt m� alltid legges inn i par, om start er null legges det inn to
+		// like sluttpunkter
+		if (start != null && displayListe != null) {
 			displayListe.add(start);
 			fargeListe.add(farge);
-            verktoyListe.add(verktoy);
-		}
-		else{
+			verktoyListe.add(verktoy);
+		} else {
 			displayListe.add(slutt);
 			fargeListe.add(farge);
-            verktoyListe.add(verktoy);
+			verktoyListe.add(verktoy);
 		}
 		displayListe.add(slutt);
 		fargeListe.add(farge);
-        verktoyListe.add(verktoy);
+		verktoyListe.add(verktoy);
 		repaint();
 	}
 
@@ -101,156 +100,71 @@ public class Tegneprogram extends MPanel implements MouseMotionListener, MouseLi
 		slutt = null;
 	}
 
-
 	public void paint(Graphics g) {
 
-        if (tegnet == 0) {
-            g.setColor(Color.WHITE);
-            g.fillRect(0, 0, getSize().width, getSize().height);
-            verktoy = 1;
-        }
+		if (tegnet == 0) {
+			g.setColor(Color.WHITE);
+			g.fillRect(0, 0, getSize().width, getSize().height);
+			verktoy = 1;
+		}
 
-        g.setColor(farge);
-        //prer � tegne punktene i displayListe. Kan gi error om den leser en ugyldig fil
+		g.setColor(farge);
+		// prer � tegne punktene i displayListe. Kan gi error om den leser en
+		// ugyldig fil
 
-            while (tegnet < displayListe.size() - 1) {
-                g.setColor(fargeListe.get(tegnet));
-                verktoy = (verktoyListe.get(tegnet));
+		while (tegnet < displayListe.size() - 1) {
+			g.setColor(fargeListe.get(tegnet));
+			verktoy = (verktoyListe.get(tegnet));
+			Point p0;
+			Point p1;
+			p0 = displayListe.get(tegnet++);
+			p1 = displayListe.get(tegnet++);
 
-                switch (verktoy) {
+			switch (verktoy) {
 
-                    case 1:
+			case 1:
 
-                        try {
-                            Point p0 = displayListe.get(tegnet++);
-                            Point p1 = displayListe.get(tegnet++);
-                            g.drawLine(p0.x, p0.y, p1.x, p1.y);
+				g.drawLine(p0.x, p0.y, p1.x, p1.y);
 
+				break;
 
-                        } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, "Feil ved tegning");
-                            displayListe = new ArrayList<>();
-                            fargeListe = new ArrayList<>();
-                            verktoyListe = new ArrayList<>();
-                            repaint();
-                            new Filvelger(storage);
-                            mainFrame.dispose();
-                            fb.setPath("tmp");
-                        }
+			case 2:
 
-                        break;
+				g.setColor(Color.WHITE);
 
-                    case 2:
+				g.fillRect(p0.x, p0.y, 50, 50);
 
-                            try {
+				break;
+			case 3:
 
-                                g.setColor(Color.WHITE);
-                                Point p0 = displayListe.get(tegnet++);
-                                Point p1 = displayListe.get(tegnet++);
-                                g.fillRect(p0.x, p0.y, 50, 50);
+				g.fillRect(p0.x, p0.y, 100, 100);
 
-                            } catch (Exception e) {
-                                JOptionPane.showMessageDialog(null, "Feil ved tegning");
-                                displayListe = new ArrayList<>();
-                                fargeListe = new ArrayList<>();
-                                verktoyListe = new ArrayList<>();
-                                repaint();
-                                new Filvelger(storage);
-                                mainFrame.dispose();
-                                fb.setPath("tmp");
-                            }
+				break;
+			case 4:
 
-                        break;
-                    case 3:
+				g.drawRect(p0.x, p0.y, 100, 100);
 
-                            try {
-                                Point p0 = displayListe.get(tegnet++);
-                                Point p1 = displayListe.get(tegnet++);
-                                g.fillRect(p0.x, p0.y, 100, 100);
+				break;
+			case 5:
 
-                            } catch (Exception e) {
-                                JOptionPane.showMessageDialog(null, "Feil ved tegning");
-                                displayListe = new ArrayList<>();
-                                fargeListe = new ArrayList<>();
-                                verktoyListe = new ArrayList<>();
-                                repaint();
-                                new Filvelger(storage);
-                                mainFrame.dispose();
-                                fb.setPath("tmp");
-                            }
+				g.fillOval(p0.x, p0.y, 100, 100);
 
-                        break;
-                    case 4:
+				break;
+			case 6:
 
-                            try {
-                                Point p0 = displayListe.get(tegnet++);
-                                Point p1 = displayListe.get(tegnet++);
+				g.drawOval(p0.x, p0.y, 100, 100);
 
+				break;
+			}
+		}
 
-                                g.drawRect(p0.x, p0.y, 100, 100);
-
-                            } catch (Exception e) {
-                                JOptionPane.showMessageDialog(null, "Feil ved tegning");
-                                displayListe = new ArrayList<>();
-                                fargeListe = new ArrayList<>();
-                                verktoyListe = new ArrayList<>();
-                                repaint();
-                                new Filvelger(storage);
-                                mainFrame.dispose();
-                                fb.setPath("tmp");
-                            }
-
-                        break;
-                    case 5:
-
-                            try {
-                                Point p0 = displayListe.get(tegnet++);
-                                Point p1 = displayListe.get(tegnet++);
-                                g.fillOval(p0.x, p0.y, 100, 100);
-
-                            } catch (Exception e) {
-                                JOptionPane.showMessageDialog(null, "Feil ved tegning");
-                                displayListe = new ArrayList<>();
-                                fargeListe = new ArrayList<>();
-                                verktoyListe = new ArrayList<>();
-                                repaint();
-                                new Filvelger(storage);
-                                mainFrame.dispose();
-                                fb.setPath("tmp");
-                            }
-
-                        break;
-                    case 6:
-
-                            try {
-                                Point p0 = displayListe.get(tegnet++);
-                                Point p1 = displayListe.get(tegnet++);
-
-                                g.drawOval(p0.x, p0.y, 100, 100);
-
-                            } catch (Exception e) {
-                                JOptionPane.showMessageDialog(null, "Feil ved tegning");
-                                displayListe = new ArrayList<>();
-                                fargeListe = new ArrayList<>();
-                                verktoyListe = new ArrayList<>();
-                                repaint();
-                                new Filvelger(storage);
-                                mainFrame.dispose();
-                                fb.setPath("tmp");
-                            }
-                        break;
-                    }
-                }
-            
-        }
-
+	}
 
 	public void update(Graphics g) {
 		paint(g);
 	}
 
-
-	//knappevalg
+	// knappevalg
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == clearBtn) {
 			tegnet = 0;
@@ -258,7 +172,7 @@ public class Tegneprogram extends MPanel implements MouseMotionListener, MouseLi
 			fargeListe = new ArrayList<>();
 			verktoyListe = new ArrayList<>();
 			repaint();
-		}  else if (e.getSource() == loadBtn) {
+		} else if (e.getSource() == loadBtn) {
 			fb.newPath();
 			fb.loadLists();
 			tegnet = 0;
@@ -269,21 +183,21 @@ public class Tegneprogram extends MPanel implements MouseMotionListener, MouseLi
 		}
 	}
 
-
-	//Sjekker for endringer hvert 5. sekund, og evt lagrer
-	public void saveTimer(StopWatch sw){
-		if(loaded){
+	// Sjekker for endringer hvert 5. sekund, og evt lagrer
+	public void saveTimer(StopWatch sw) {
+		if (loaded) {
 			fb.loadLists();
 			repaint();
 		}
 
-		while(sw.isStarted()) {
+		while (sw.isStarted()) {
 			if (sw.getTime() >= 5000) {
-				sw.suspend(); 
+				sw.suspend();
 				sw.reset();
 				sw.start();
 				if (changed) {
-					//lager en templiste, s� det fungerer � lagre om brukeren tegner mens programmet prer � lagre
+					// lager en templiste, s� det fungerer � lagre om brukeren
+					// tegner mens programmet prer � lagre
 					List<Point> tempListe1 = new ArrayList<>();
 					List<Color> tempListe2 = new ArrayList<>();
 					List<Integer> tempListe3 = new ArrayList<>();
@@ -302,7 +216,7 @@ public class Tegneprogram extends MPanel implements MouseMotionListener, MouseLi
 		}
 	}
 
-	//Tegner et punkt n蚌 bruker klikker en gang
+	// Tegner et punkt n蚌 bruker klikker en gang
 	public void mousePressed(MouseEvent e) {
 		changed = true;
 		Point p = new Point(e.getX(), e.getY());
@@ -310,8 +224,8 @@ public class Tegneprogram extends MPanel implements MouseMotionListener, MouseLi
 		displayListe.add(p);
 		fargeListe.add(farge);
 		fargeListe.add(farge);
-        verktoyListe.add(verktoy);
-        verktoyListe.add(verktoy);
+		verktoyListe.add(verktoy);
+		verktoyListe.add(verktoy);
 		repaint();
 	}
 
@@ -324,23 +238,16 @@ public class Tegneprogram extends MPanel implements MouseMotionListener, MouseLi
 
 	}
 
-
-
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 
 	}
 
-
-
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 
 	}
-
-
-
 
 }
