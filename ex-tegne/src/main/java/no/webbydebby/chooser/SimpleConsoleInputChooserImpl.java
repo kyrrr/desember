@@ -39,7 +39,7 @@ public class SimpleConsoleInputChooserImpl implements ChooseFromListOrOtherDefin
 		try {
 			valg = br.readLine();
 		} catch (IOException ioe) {
-			System.out.println("IO error trying to read your name!");
+			System.out.println("Feil ved lesning av navn.");
 			System.exit(1);
 		}
 		int valgNr = -1;

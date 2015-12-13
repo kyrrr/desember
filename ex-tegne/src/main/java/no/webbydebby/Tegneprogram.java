@@ -23,7 +23,7 @@ import org.apache.commons.lang3.time.StopWatch;
 import no.webbydebby.storagetool.StorageProviderDefinition;
 
 public class Tegneprogram extends JPanelFixForOSX
-		implements MouseMotionListener, MouseListener, ActionListener, Serializable, Cloneable {
+		implements MouseMotionListener, MouseListener, ActionListener{
 
 	static List<Point> displayListe = new ArrayList<>();
 	static List<Color> fargeListe = new ArrayList<>();
