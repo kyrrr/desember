@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 
 import no.webbydebby.JPanelFixForOSX;
 
-public class RunChooserStandalone implements ChooseFromListOrOtherDefinition {
+public class SwingSketchChooserImpl implements ChooseFromListOrOtherDefinition {
 
 	JDialog jdialog = null;
 	private String valgtFile;
