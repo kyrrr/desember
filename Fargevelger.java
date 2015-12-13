@@ -1,4 +1,4 @@
-
+package no.webtech.ex;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,10 +8,10 @@ import java.awt.event.ActionListener;
 /**
  * Created by Odin on 11/22/2015.
  */
-public class Fargevelger extends JPanel implements ActionListener {
-    JPanel cards;
+public class Fargevelger extends MPanel implements ActionListener {
+    MPanel cards;
     final static String knapper = "Velg Tegneverktoy";
-    final static String slides = "Endre farge og størrelser";
+    final static String slides = "Endre farge og stï¿½rrelser";
     JButton jbt8 = new JButton("Velg Farge");
     JButton Avbryt = new JButton("Velg Farge");
 

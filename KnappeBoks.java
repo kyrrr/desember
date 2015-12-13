@@ -1,9 +1,11 @@
+
+package no.webtech.ex;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class KnappeBoks extends JPanel implements ActionListener {
+public class KnappeBoks extends MPanel implements ActionListener {
 	
     JButton jbt1 = new JButton("Tegne");
     JButton jbt2 = new JButton("Viskelær");
@@ -20,7 +22,6 @@ public class KnappeBoks extends JPanel implements ActionListener {
     public KnappeBoks() {
         TegneVerktoyBoks();
     }
-
 
 
     private void TegneVerktoyBoks() {

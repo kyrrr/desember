@@ -1,7 +1,7 @@
 /**
  * Created by Odin on 11/18/2015.
  */
-
+package no.webtech.ex;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.AdjustmentEvent;
@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-class ColorSlider extends JPanel {
+class ColorSlider extends MPanel {
 
 
 
@@ -24,7 +24,7 @@ class ColorSlider extends JPanel {
 
 }
 
-class ColorPicker extends JPanel implements AdjustmentListener, ActionListener {
+class ColorPicker extends MPanel implements AdjustmentListener, ActionListener {
     private int scrollVerdi1;
     private int scrollVerdi2;
     private int scrollVerdi3;
@@ -32,12 +32,12 @@ class ColorPicker extends JPanel implements AdjustmentListener, ActionListener {
     Scrollbar scr = new Scrollbar(Scrollbar.HORIZONTAL,255,0,0,255 );
     Scrollbar scg = new Scrollbar(Scrollbar.HORIZONTAL,255,0,0,255 );
     Scrollbar scb = new Scrollbar(Scrollbar.HORIZONTAL,255,0,0,255 );
-    JPanel c = null;
+    MPanel c = null;
     //JButton VelgFarge = new JButton("Velg Farge");
     JButton Tilfeldig = new JButton("Tilfeldig");
 
 
-    public ColorPicker(JPanel ic) {
+    public ColorPicker(MPanel ic) {
         c = ic;
         setLayout(new GridBagLayout());
         //add(scr);

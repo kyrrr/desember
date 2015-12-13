@@ -1,32 +1,45 @@
+package no.webtech.ex;
 import java.awt.Color;
 import java.awt.Point;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.io.PipedInputStream;
 import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import no.webtech.ex.choose.ChooseFromListOrOtherDefinition;
+import no.webtech.ex.choose.SimpleConsoleInputChooserImpl;
+import no.webtech.storagetool.StorageProviderDefinition;
+import no.webtech.storagetool.StorageProviderLocalFilestoreImpl;
+
 public class Filbehandler {
 	
-	String pathname;
+	String sketchname;
     JFrame mainFrame;
 	private List<Point> p;
 	private List<Color> c;
 	private List<Integer> v;
+	private StorageProviderDefinition storage;
 
-
-	public Filbehandler(String path, JFrame jf){
-		pathname = path;
+	public Filbehandler(String path, JFrame jf, StorageProviderDefinition storage){
+		this.storage = storage;
+		sketchname = path;
 		mainFrame = jf;
 	};
 	
 	public void setPath(String s){
-		pathname = s;
+		sketchname = s;
 		mainFrame.setTitle(s);
 	}
 	public void tempLists1 (List<Point> tempList1){
@@ -40,16 +53,25 @@ public class Filbehandler {
 	}
 	
 	//Lagrer til valgt "pathname"
-	public void saveLists (){
+	public void saveLists(){
 		try {
-			FileOutputStream fos = new FileOutputStream(pathname);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			
+			//storage.setSketchname(pathname); må flyttes til filvelger-klasse, enten om ny eller eksitsterende
+			
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			ObjectOutputStream oos = new ObjectOutputStream(buffer);
 			oos.writeObject(p);
 			oos.writeObject(c);
 			oos.writeObject(v);
 			oos.flush();
 			oos.close();
-			fos.close();
+			buffer.close();
+			InputStream in = new ByteArrayInputStream(buffer.toByteArray());
+			
+			storage.upload(in);
+			
+			
+			
 			System.out.println("SavedPoints");
 
 		} catch (Exception ex) {
@@ -63,16 +85,22 @@ public class Filbehandler {
 //Returnerer en liste over alle punktene i angitt fil
 	public void loadLists(){
 		try {
-			FileInputStream fis = new FileInputStream(pathname);
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			p = (List<Point>) ois.readObject();
-			c = (List<Color>) ois.readObject();
-			v = (List<Integer>) ois.readObject();
-			ois.close();
-			fis.close();
+			
+			//storage.setSketchname(pathname); må flyttes til filvelger-klasse, enten om ny eller
+			
+			
+			storage.setSketchname(sketchname);
+			ObjectInputStream data = new ObjectInputStream(storage.download());
+			p = (List<Point>) data.readObject();
+			c = (List<Color>) data.readObject();
+			v = (List<Integer>) data.readObject();
 			Tegneprogram.displayListe = p;
-			Tegneprogram.fargeListe= c;
-			Tegneprogram.verktoyListe= v;
+			Tegneprogram.fargeListe = c;
+			Tegneprogram.verktoyListe = v;
+			
+			data.close();
+			
+	
 
 		} catch (Exception ex) {
 			System.out.println("Feil ved lesing av vektor");
@@ -80,21 +108,17 @@ public class Filbehandler {
     }
 	//forandrer hvilken fil som er aktiv, dvs forandrer pathname til valgt fil
 	public void newPath(){
-	JFileChooser f = new JFileChooser();
-	//Gj�r at filvelgeren �pnes i den aktive mappen (som allerede er �pen)
-    f.setCurrentDirectory(new File(System.getProperty("user.dir")));
-    try{
-    int result = f.showOpenDialog(null);
-    //sjekker om en fil er valgt
-    if (result == JFileChooser.APPROVE_OPTION) {
-        File selectedFile = f.getSelectedFile();
-        pathname = selectedFile.getPath();
-        mainFrame.setTitle(pathname);
-    }
-    }
-    catch(Exception e){
-    	JOptionPane.showMessageDialog(mainFrame, "Feil ved lesing av fil");
-    }
-
+		//vil lukke nåværende vindu, ny dialog. halfway there
+		//HovedVindu.close();
+		ChooseFromListOrOtherDefinition choose = new SimpleConsoleInputChooserImpl(System.in);
+		List<String> filenames = storage.getFilenames();
+		String sketchName = choose.chooseFromListOrOther(filenames);
+		boolean isExistingSketch = filenames.contains(sketchName);
+		storage.setSketchname(sketchName);
+		System.out.println("Sketchname: " + sketchName + " Existing?: " + isExistingSketch);
+		
+		boolean loaded = true;
+		String path = sketchName;
+		new HovedVindu(path, loaded, storage);
 	}
 }

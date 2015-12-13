@@ -1,3 +1,4 @@
+package no.webtech.ex;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -5,19 +6,24 @@ import java.awt.Toolkit;
 
 import javax.swing.*;
 
+import no.webtech.storagetool.StorageProviderDefinition;
+
 
 public class HovedVindu extends JFrame{
 	
-	public HovedVindu(String path, Boolean loaded) {
-		startUI(path, loaded);
+	private StorageProviderDefinition storage;
+
+	public HovedVindu(String sketchName, Boolean loaded, StorageProviderDefinition storage) {
+		this.storage = storage;
+		startUI(sketchName, loaded);
 	}
 
-	private void startUI(String path, Boolean loaded) {
-		setTitle(path);
+	private void startUI(String sketchName, Boolean loaded) {
+		setTitle(sketchName);
 		setSize(800, 700);
 		setBackground(Color.black);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Tegneprogram draw = new Tegneprogram(path, loaded, this);
+		Tegneprogram draw = new Tegneprogram(sketchName, loaded, this, storage);
 		Fargevelger fv = new Fargevelger();
 		add(draw, BorderLayout.CENTER);
 		add(fv,BorderLayout.WEST);

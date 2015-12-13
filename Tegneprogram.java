@@ -1,4 +1,9 @@
-import java.awt.*;
+package no.webtech.ex;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Panel;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -6,18 +11,18 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import org.apache.commons.lang3.time.StopWatch;
-
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
+import org.apache.commons.lang3.time.StopWatch;
+
+import no.webtech.storagetool.StorageProviderDefinition;
 
 
-public class Tegneprogram extends JPanel implements MouseMotionListener, MouseListener, ActionListener, Serializable, Cloneable{
+public class Tegneprogram extends MPanel implements MouseMotionListener, MouseListener, ActionListener, Serializable, Cloneable{
 
 	static List<Point> displayListe = new ArrayList<>();
 	static List<Color> fargeListe = new ArrayList<>();
@@ -35,14 +40,16 @@ public class Tegneprogram extends JPanel implements MouseMotionListener, MouseLi
 	static int verktoy = 0;
 	static Color farge = Color.BLACK;
 	boolean loaded;
+	private StorageProviderDefinition storage;
 
-	public Tegneprogram(String path, Boolean loaded, JFrame jf) {
+	public Tegneprogram(String sketchName, Boolean loaded, JFrame jf, StorageProviderDefinition storage) {
+		this.storage = storage;
 		addMouseMotionListener(this);
 		addMouseListener(this);
 		this.loaded = loaded;
 		sw.start();
 		mainFrame = jf;
-		fb = new Filbehandler(path, mainFrame);
+		fb = new Filbehandler(sketchName, mainFrame, storage);
 
 		setLayout(new BorderLayout());
 		Panel pan = new Panel();
@@ -125,7 +132,7 @@ public class Tegneprogram extends JPanel implements MouseMotionListener, MouseLi
                             fargeListe = new ArrayList<>();
                             verktoyListe = new ArrayList<>();
                             repaint();
-                            new Filvelger();
+                            new Filvelger(storage);
                             mainFrame.dispose();
                             fb.setPath("tmp");
                         }
@@ -147,7 +154,7 @@ public class Tegneprogram extends JPanel implements MouseMotionListener, MouseLi
                                 fargeListe = new ArrayList<>();
                                 verktoyListe = new ArrayList<>();
                                 repaint();
-                                new Filvelger();
+                                new Filvelger(storage);
                                 mainFrame.dispose();
                                 fb.setPath("tmp");
                             }
@@ -166,7 +173,7 @@ public class Tegneprogram extends JPanel implements MouseMotionListener, MouseLi
                                 fargeListe = new ArrayList<>();
                                 verktoyListe = new ArrayList<>();
                                 repaint();
-                                new Filvelger();
+                                new Filvelger(storage);
                                 mainFrame.dispose();
                                 fb.setPath("tmp");
                             }
@@ -187,7 +194,7 @@ public class Tegneprogram extends JPanel implements MouseMotionListener, MouseLi
                                 fargeListe = new ArrayList<>();
                                 verktoyListe = new ArrayList<>();
                                 repaint();
-                                new Filvelger();
+                                new Filvelger(storage);
                                 mainFrame.dispose();
                                 fb.setPath("tmp");
                             }
@@ -206,7 +213,7 @@ public class Tegneprogram extends JPanel implements MouseMotionListener, MouseLi
                                 fargeListe = new ArrayList<>();
                                 verktoyListe = new ArrayList<>();
                                 repaint();
-                                new Filvelger();
+                                new Filvelger(storage);
                                 mainFrame.dispose();
                                 fb.setPath("tmp");
                             }
@@ -226,7 +233,7 @@ public class Tegneprogram extends JPanel implements MouseMotionListener, MouseLi
                                 fargeListe = new ArrayList<>();
                                 verktoyListe = new ArrayList<>();
                                 repaint();
-                                new Filvelger();
+                                new Filvelger(storage);
                                 mainFrame.dispose();
                                 fb.setPath("tmp");
                             }
