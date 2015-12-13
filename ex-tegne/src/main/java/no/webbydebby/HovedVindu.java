@@ -14,14 +14,18 @@ public class HovedVindu /*extends JFrame*/{
 	//får inn jframe i stedet for å være en jframe
 	private StorageProviderDefinition storage;
 	private JFrame jframe;
+	private String sketchName;
+	private Boolean loaded;
 
 	public HovedVindu(String sketchName, Boolean loaded, StorageProviderDefinition storage, JFrame jframe) {
 		this.jframe=jframe;
 		this.storage = storage;
-		startUI(sketchName, loaded);
+		this.sketchName = sketchName;
+		this.loaded = loaded;
+		// startUI(sketchName, loaded);
 	}
 
-	private void startUI(String sketchName, Boolean loaded) {
+	public void startUI() {
 		jframe.setTitle(sketchName);
 		jframe.setSize(800, 700);
 		jframe.setBackground(Color.black);
