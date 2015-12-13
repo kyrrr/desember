@@ -1,13 +1,11 @@
-package no.webtech.ex;
+package no.webbydebby;
 
 import java.util.List;
 
-import no.webtech.ex.choose.AlwaysChooseFirstImpl;
-import no.webtech.ex.choose.ChooseFromListOrOtherDefinition;
-import no.webtech.ex.choose.SimpleConsoleInputChooserImpl;
-import no.webtech.storagetool.StorageProviderDefinition;
-import no.webtech.storagetool.StorageProviderLocalFilestoreImpl;
-import no.webtech.storagetool.StorageProviderStoragetoolImpl;
+import no.webbydebby.chooser.ChooseFromListOrOtherDefinition;
+import no.webbydebby.chooser.SimpleConsoleInputChooserImpl;
+import no.webbydebby.storagetool.StorageProviderDefinition;
+import no.webbydebby.storagetool.StorageProviderLocalFilestoreImpl;
 
 public class Entrypoint {
 

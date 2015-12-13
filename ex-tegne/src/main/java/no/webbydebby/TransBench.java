@@ -1,14 +1,20 @@
 /**
  * Created by Odin on 11/18/2015.
  */
-package no.webtech.ex;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
+package no.webbydebby;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Scrollbar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.util.Random;
+
+import javax.swing.JButton;
 
 class ColorSlider extends MPanel {
 

@@ -1,4 +1,5 @@
-package no.webtech.ex;
+package no.webbydebby;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,7 +14,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import no.webtech.storagetool.StorageProviderDefinition;
+import no.webbydebby.storagetool.StorageProviderDefinition;
 
 public class Filvelger extends JFrame implements ActionListener{
 

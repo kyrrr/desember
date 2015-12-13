@@ -1,9 +1,12 @@
 
-package no.webtech.ex;
-import javax.swing.*;
-import java.awt.*;
+package no.webbydebby;
+
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.Box;
+import javax.swing.JButton;
 
 public class KnappeBoks extends MPanel implements ActionListener {
 	

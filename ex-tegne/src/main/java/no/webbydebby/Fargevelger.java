@@ -1,4 +1,5 @@
-package no.webtech.ex;
+package no.webbydebby;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

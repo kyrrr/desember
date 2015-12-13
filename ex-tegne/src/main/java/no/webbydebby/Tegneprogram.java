@@ -1,4 +1,5 @@
-package no.webtech.ex;
+package no.webbydebby;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -19,7 +20,7 @@ import javax.swing.JOptionPane;
 
 import org.apache.commons.lang3.time.StopWatch;
 
-import no.webtech.storagetool.StorageProviderDefinition;
+import no.webbydebby.storagetool.StorageProviderDefinition;
 
 
 public class Tegneprogram extends MPanel implements MouseMotionListener, MouseListener, ActionListener, Serializable, Cloneable{

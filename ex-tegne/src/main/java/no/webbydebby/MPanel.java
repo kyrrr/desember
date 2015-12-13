@@ -1,4 +1,4 @@
-package no.webtech.ex;
+package no.webbydebby;
 
 import java.awt.Panel;
 

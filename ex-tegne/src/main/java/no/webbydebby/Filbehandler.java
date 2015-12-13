@@ -1,27 +1,19 @@
-package no.webtech.ex;
+package no.webbydebby;
+
 import java.awt.Color;
 import java.awt.Point;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.io.PipedInputStream;
 import java.util.List;
 
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
-import no.webtech.ex.choose.ChooseFromListOrOtherDefinition;
-import no.webtech.ex.choose.SimpleConsoleInputChooserImpl;
-import no.webtech.storagetool.StorageProviderDefinition;
-import no.webtech.storagetool.StorageProviderLocalFilestoreImpl;
+import no.webbydebby.chooser.ChooseFromListOrOtherDefinition;
+import no.webbydebby.chooser.SimpleConsoleInputChooserImpl;
+import no.webbydebby.storagetool.StorageProviderDefinition;
 
 public class Filbehandler {
 	

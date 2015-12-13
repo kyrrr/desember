@@ -1,12 +1,13 @@
-package no.webtech.ex;
+package no.webbydebby;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
-import no.webtech.storagetool.StorageProviderDefinition;
+import no.webbydebby.storagetool.StorageProviderDefinition;
 
 
 public class HovedVindu extends JFrame{
