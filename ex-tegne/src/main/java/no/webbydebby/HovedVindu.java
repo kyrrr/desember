@@ -11,7 +11,7 @@ import no.webbydebby.storagetool.StorageProviderDefinition;
 
 
 public class HovedVindu /*extends JFrame*/{
-	
+	//får inn jframe i stedet for å være en jframe
 	private StorageProviderDefinition storage;
 	private JFrame jframe;
 
@@ -26,7 +26,7 @@ public class HovedVindu /*extends JFrame*/{
 		jframe.setSize(800, 700);
 		jframe.setBackground(Color.black);
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Tegneprogram draw = new Tegneprogram(sketchName, loaded, jframe, storage, jframe);
+		Tegneprogram draw = new Tegneprogram(sketchName, loaded, storage, jframe);
 		Fargevelger fv = new Fargevelger();
 		jframe.add(draw, BorderLayout.CENTER);
 		jframe.add(fv,BorderLayout.WEST);

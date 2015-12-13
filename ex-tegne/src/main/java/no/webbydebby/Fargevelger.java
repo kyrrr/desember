@@ -9,8 +9,8 @@ import java.awt.event.ActionListener;
 /**
  * Created by Odin on 11/22/2015.
  */
-public class Fargevelger extends MPanel implements ActionListener {
-    MPanel cards;
+public class Fargevelger extends JPanelFixForOSX implements ActionListener {
+    JPanelFixForOSX cards;
     final static String knapper = "Velg Tegneverktoy";
     final static String slides = "Endre farge og st�rrelser";
     JButton jbt8 = new JButton("Velg Farge");

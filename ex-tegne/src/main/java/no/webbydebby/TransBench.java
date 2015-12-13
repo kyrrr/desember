@@ -16,7 +16,7 @@ import java.util.Random;
 
 import javax.swing.JButton;
 
-class ColorSlider extends MPanel {
+class ColorSlider extends JPanelFixForOSX {
 
 
 
@@ -30,7 +30,7 @@ class ColorSlider extends MPanel {
 
 }
 
-class ColorPicker extends MPanel implements AdjustmentListener, ActionListener {
+class ColorPicker extends JPanelFixForOSX implements AdjustmentListener, ActionListener {
     private int scrollVerdi1;
     private int scrollVerdi2;
     private int scrollVerdi3;
@@ -38,12 +38,12 @@ class ColorPicker extends MPanel implements AdjustmentListener, ActionListener {
     Scrollbar scr = new Scrollbar(Scrollbar.HORIZONTAL,255,0,0,255 );
     Scrollbar scg = new Scrollbar(Scrollbar.HORIZONTAL,255,0,0,255 );
     Scrollbar scb = new Scrollbar(Scrollbar.HORIZONTAL,255,0,0,255 );
-    MPanel c = null;
+    JPanelFixForOSX c = null;
     //JButton VelgFarge = new JButton("Velg Farge");
     JButton Tilfeldig = new JButton("Tilfeldig");
 
 
-    public ColorPicker(MPanel ic) {
+    public ColorPicker(JPanelFixForOSX ic) {
         c = ic;
         setLayout(new GridBagLayout());
         //add(scr);

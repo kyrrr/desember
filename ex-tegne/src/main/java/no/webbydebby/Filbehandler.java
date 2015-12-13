@@ -17,24 +17,23 @@ import no.webbydebby.storagetool.StorageProviderDefinition;
 
 public class Filbehandler {
 	
-	String sketchname;
-    JFrame mainFrame;
+	private String sketchname;
+    //JFrame mainFrame;
 	private List<Point> p;
 	private List<Color> c;
 	private List<Integer> v;
 	private StorageProviderDefinition storage;
 	private JFrame jframe;
 
-	public Filbehandler(String path, JFrame jf, StorageProviderDefinition storage, JFrame jframe){
+	public Filbehandler(String path, StorageProviderDefinition storage, JFrame jframe){
 		this.storage = storage;
 		sketchname = path;
-		mainFrame = jf;
 		this.jframe = jframe;
-	};
+	}
 	
 	public void setPath(String s){
 		sketchname = s;
-		mainFrame.setTitle(s);
+		jframe.setTitle(s);
 	}
 	public void tempLists1 (List<Point> tempList1){
 		p = tempList1;

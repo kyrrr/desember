@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.JButton;
 
-public class KnappeBoks extends MPanel implements ActionListener {
+public class KnappeBoks extends JPanelFixForOSX implements ActionListener {
 	
     JButton jbt1 = new JButton("Tegne");
     JButton jbt2 = new JButton("Viskelær");

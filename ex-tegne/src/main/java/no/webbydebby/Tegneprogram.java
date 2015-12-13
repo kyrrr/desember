@@ -22,7 +22,7 @@ import org.apache.commons.lang3.time.StopWatch;
 
 import no.webbydebby.storagetool.StorageProviderDefinition;
 
-public class Tegneprogram extends MPanel
+public class Tegneprogram extends JPanelFixForOSX
 		implements MouseMotionListener, MouseListener, ActionListener, Serializable, Cloneable {
 
 	static List<Point> displayListe = new ArrayList<>();
@@ -36,7 +36,7 @@ public class Tegneprogram extends MPanel
 	StopWatch sw = new StopWatch();
 	Boolean changed = false;
 	Filbehandler fb;
-	JFrame mainFrame;
+	//JFrame mainFrame;
 	static int tegnet = 0;
 	static int verktoy = 0;
 	static Color farge = Color.BLACK;
@@ -44,15 +44,14 @@ public class Tegneprogram extends MPanel
 	private StorageProviderDefinition storage;
 	private JFrame jframe;
 
-	public Tegneprogram(String sketchName, Boolean loaded, JFrame jf, StorageProviderDefinition storage, JFrame jframe) {
+	public Tegneprogram(String sketchName, Boolean loaded, StorageProviderDefinition storage, JFrame jframe) {
 		this.storage = storage;
 		this.jframe = jframe;
 		addMouseMotionListener(this);
 		addMouseListener(this);
 		this.loaded = loaded;
 		sw.start();
-		mainFrame = jf;
-		fb = new Filbehandler(sketchName, mainFrame, storage, jframe);
+		fb = new Filbehandler(sketchName, storage, jframe);
 
 		setLayout(new BorderLayout());
 		Panel pan = new Panel();
