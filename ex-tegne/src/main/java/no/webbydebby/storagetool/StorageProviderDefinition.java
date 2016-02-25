@@ -9,15 +9,7 @@ import java.util.List;
  * Kjente implementasjoner er:
  * StorageProviderLocalFilestoreImpl
  * StorageProviderStoragetoolImpl.java
- * 
- * Det er imidlertid et problem med Storagetool pt, men dette kan endre seg ...
- * 
- * 
- * NB: Dette interfacet er ikke optimalt, men er diktert av hvordan storagetool/Storage.class 
- * er implementert  - dessverre
- * 
- * Moral: Write to interfaces, not to implementations!!!
- *
+ 
  */
 public interface StorageProviderDefinition {
 	void init(String teamcontainer);

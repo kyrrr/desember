@@ -65,10 +65,6 @@ public class SwingSketchChooserImpl implements ChooseFromListOrOtherDefinition {
 				dim.height / 2 - jdialog.getSize().height / 2);
 		jdialog.setVisible(true);
 		
-		
-		
-		
-
 		jcombobox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

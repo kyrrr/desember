@@ -27,7 +27,7 @@ public class TegneprogramConfig {
 	public ChooseFromListOrOtherDefinition chooser(){
 		return new SwingSketchChooserImpl();
 				
-				//impleConsoleInputChooserImpl(System.in);
+				//SimpleConsoleInputChooserImpl(System.in);
 	
 	}
 	
@@ -38,4 +38,8 @@ public class TegneprogramConfig {
 		System.out.println("Sketchname: " + sketchName);
 		return new HovedVindu(sketchName, true, storage, new JFrame());
 	}
+	
+	
+	
+	
 }
