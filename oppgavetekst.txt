@@ -1,0 +1,62 @@
+Eksamensoppgave
+revisjon 1.1
+
+Oppgaven skal løses i grupper. 
+Hver gruppe tildeles en gruppekode ved dannelsen av grupper i Evalanche.
+Besvarelsen sendes inn i Fronter innen den fristen som er satt der.
+Forberedelser
+Studer meldingsstrukturene for muse-programmering, for eksempel det du kan finne ved å bruke stikkord-registeret bakerst i boka. Studer også det du kan finne ut om grafisk programmering i Swing, og meny-programmering. Studer blant annet klassen Polygon. 
+
+Bruk de kunnskapene du kan skaffe deg ved å studere innholdet i boka, til å bygge et sketch/tegneprogram med de mulighetene du velger å tilby.  
+
+Studer datastrukturer, IO, serialisering og nettverksprogrammering som du også finner i boka. 
+Oppgave
+Oppgaven er å bygge et vektor-basert tegneprogram i Java med god programdesign.
+
+Programdesign handler blant annet om hvordan du allokerer ansvar til klasser og pakker dem inn i relevante pakker. Programdesign handler ikke om grafisk brukerflate.
+
+Velg passende datastrukturer og IO-klasser for følgende funksjonalitet:
+
+Etter at brukeren har bestemt et navn på sitt sketch-prosjekt, skal programmet begynne å lagre sketchen på en ekstern tjenermaskin hvert femte sekund så lenge det skjer forandringer. Hvis det ikke skjer forandringer, skal det ikke lagres noe. Programmet skal ikke tilby noen annen form for persistens.
+
+Brukeren skal tilgang til sine prosjekter, og kunne velge prosjekt tilbake når som helst. Nytt prosjekt oppstår hver gang brukeren velger å oppgi et et prosjektnavn som ikke har vært brukt tidligere. 
+Spesielle tekniske krav
+Eksamensteamet er ansvarlig for å unngå overbelastning av tjenermaskinen eller båndbredden.
+
+Prosjektet skal bruke storagetool.jar for persistens på ekstern tjenermaskin. Pakken skal kobles til ditt produkt med en classpath variable.
+
+Her finner du beskrivelse av tilgjengelig verktøy for persistens på en ekstern tjenermaskin. Pakkene skal kobles til ditt prosjekt som et “user library”.
+Nytt i revisjon 1.1
+Storage storage = new Storage(id);
+
+Eksempel Storage storage = new Storage(“sketches-1”);
+
+id = id-kode
+id-kode er den koden gruppen får tildelt etter innmelding av gruppen, men uten  underscore.
+
+Se hvilken versjon av Storage du har:
+
+System.out.println(storage.getVersion());
+Spesielle hendelser
+I andre eller tredje eksamensuke kan det arrangeres et community meeting der brukerne av storagetool.jar kan komme med ett ønske om ytterligere en tilgjengelig melding. Hvis det skjer, vil innkallingen vises i Evalanche.
+Produkt 
+Produktet er et program som skal kunne kjøres fra Eclipse. Tilrettelegging av classpath variable og user library må gjelde Eclipse.
+Innlevering
+Alle deler av oppgavesettet leveres i digitalt format.
+Hele besvarelsen leveres i standard zip-format som en enkelt zip-fil.
+Zip-filen skal på prosjektets rotnivå inneholde filen MEDLEMMER.TXT med en liste over eksamensgruppens medlemmer. Filen skal kodes som en vanlig tekstfil med UTF-8. 
+Det kan også legges ved en pdf-fil som beskriver besvarelsen, slik at sensor lett får øye på høydepunkter i arbeidet. I så fall legges denne pdf-filen også på rotnivå i zip-filen. 
+
+Zip-filen skal døpes med id-kode.zip. En eventuell pdf-fil døpes på samme måte.
+id-kode er den koden gruppen får tildelt etter innmelding av gruppen i Evalanche.
+Zip-filen skal kunne pakkes opp på rot-nivå i et nytt java-prosjekt i Eclipse.
+Zip-filen leveres i fronter innen tidsfristen.
+Vurderingskriterier
+Besvarelsen vurderes ut fra hvor tilgjengelig og godt tilrettelagt den er.
+Det legges vesentlig vekt på presentasjon av arbeidet.
+Det legges vekt  på programdesign og bruk av konvensjoner som er innarbeidet gjennom semesterets øvingsoppgaver.
+Det er vesentlig at alle deler av arbeidet framstår som del av en helhet, og at besvarelsen er godt redigert.
+Det legges vekt på ambisjonsnivå og faglig modenhet.
+
+
+end of document
